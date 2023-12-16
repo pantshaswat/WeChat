@@ -2,10 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:we_chat/auth/bloc/auth_bloc_bloc.dart';
+import 'package:we_chat/home/bloc/home_bloc_bloc.dart';
+import 'package:we_chat/home/view/all_users_page.dart';
 import 'firebase_options.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:we_chat/home/view/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,12 +30,20 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, AsyncSnapshot<User?> snapshot) {
             if (snapshot.hasData && snapshot.data != null) {
-              return const HomePage();
+              return BlocProvider<HomeBloc>(
+                create: (context) => HomeBloc(),
+                child: AllUserPage(),
+              );
             } else if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
-            return BlocProvider(
-              create: (_) => AuthBloc(),
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider<AuthBloc>(
+                  create: (context) => AuthBloc(),
+                  child: AuthPage(),
+                ),
+              ],
               child: AuthPage(),
             );
           },
