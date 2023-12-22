@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:we_chat/home/bloc/home_bloc_bloc.dart';
-import 'package:we_chat/home/view/chat_page.dart';
+import 'package:we_chat/chat/chat_page.dart';
 import 'package:we_chat/user/user_api.dart';
 
 class AllUserPage extends StatelessWidget {
@@ -18,7 +19,10 @@ class AllUserPage extends StatelessWidget {
         backgroundColor: Colors.blue,
         actions: [
           IconButton(
-              onPressed: () => FirebaseAuth.instance.signOut(),
+              onPressed: () async {
+                FirebaseAuth.instance.signOut();
+                await GoogleSignIn().signOut();
+              },
               icon: Icon(Icons.logout))
         ],
       ),

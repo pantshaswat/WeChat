@@ -24,6 +24,7 @@ class MessageApi {
         'senderId': message.senderId,
         'receiverId': message.receiverId,
         'isSeen': message.isSeen,
+        'msgType': message.msgType,
       });
     }
   }

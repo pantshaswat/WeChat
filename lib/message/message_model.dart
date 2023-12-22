@@ -8,6 +8,7 @@ class MessageModel {
   final String senderId;
   final String receiverId;
   final bool isSeen;
+  final int msgType;
 
   MessageModel({
     required this.msg,
@@ -15,5 +16,6 @@ class MessageModel {
     required this.senderId,
     required this.receiverId,
     required this.isSeen,
+    required this.msgType,
   });
 }
