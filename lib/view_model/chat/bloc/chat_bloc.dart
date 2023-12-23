@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:we_chat/message/message_model.dart';
+import 'package:we_chat/models/message_model.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';

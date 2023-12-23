@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:we_chat/home/bloc/home_bloc_bloc.dart';
-import 'package:we_chat/chat/chat_page.dart';
-import 'package:we_chat/user/user_api.dart';
+import 'package:we_chat/services/user/user_api.dart';
+import 'package:we_chat/view_model/chat/chat_page.dart';
+import 'package:we_chat/view_model/home/bloc/home_bloc_bloc.dart';
 
 class AllUserPage extends StatelessWidget {
   const AllUserPage({super.key});

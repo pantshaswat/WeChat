@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:we_chat/chat/bloc/chat_bloc.dart';
-import 'package:we_chat/message/message_api.dart';
-import 'package:we_chat/message/message_model.dart';
+import 'package:we_chat/services/message/message_api.dart';
+import 'package:we_chat/models/message_model.dart';
+import 'package:we_chat/view_model/chat/bloc/chat_bloc.dart';
 
 class ChatPage extends StatefulWidget {
   final Map<String, dynamic> user;
@@ -52,10 +52,17 @@ class _ChatPageState extends State<ChatPage> {
                   'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
             ),
             SizedBox(width: 10),
-            Text(widget.user['displayName'] ?? 'not found'),
+            Text(
+              widget.user['displayName'] ?? 'not found',
+              style: TextStyle(fontSize: 16),
+            ),
           ],
         ),
         backgroundColor: Colors.blue,
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.call)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.video_call))
+        ],
       ),
       body: StreamBuilder<List<MessageModel>>(
           stream: _chatBloc.messageStream,

@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:we_chat/auth/bloc/auth_bloc_bloc.dart';
 import 'package:we_chat/home/bloc/home_bloc_bloc.dart';
 import 'package:we_chat/home/view/all_users_page.dart';
+import 'package:we_chat/services/auth/bloc/auth_bloc_bloc.dart';
 import 'firebase_options.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

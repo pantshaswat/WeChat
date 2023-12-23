@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:we_chat/message/message_model.dart';
+import 'package:we_chat/models/message_model.dart';
 
 class MessageApi {
   String generateChatRoomId(String userId1, String userId2) {
