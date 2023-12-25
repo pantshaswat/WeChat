@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:we_chat/api.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -50,7 +51,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCxCVNdo5I8yRBprV2XLKuonYrIMsqqzVg',
+    apiKey: FIREBASE_ANDROID_KEY,
     appId: '1:916564096842:android:615aab1c5fe4e7563073b3',
     messagingSenderId: '916564096842',
     projectId: 'wechat-2ca94',
@@ -58,7 +59,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDWH6nYwE2iN4_4I5sRn-W-faU0TaKiEQY',
+    apiKey: FIREBASE_IOS_KEY,
     appId: '1:916564096842:ios:fc141cb710965efb3073b3',
     messagingSenderId: '916564096842',
     projectId: 'wechat-2ca94',

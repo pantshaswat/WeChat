@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:we_chat/services/auth/bloc/auth_bloc_bloc.dart';
-import 'package:we_chat/main.dart';
 import 'package:we_chat/core/not_found_page.dart';
+import 'package:we_chat/view_model/home/view/auth_page.dart';
 
 class AppRouter {
   static Route<dynamic> onGenerateRoutes(RouteSettings _settings) {

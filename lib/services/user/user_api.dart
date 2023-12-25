@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:we_chat/services/message/message_api.dart';
 
 class ChatUserApi {
   Future<void> addChatUser(User? user) async {
@@ -88,4 +89,18 @@ class ChatUserApi {
 
     return [];
   }
+  // Stream<List<dynamic>> getAllSortedUsers(User? user) {
+  //   final Stream<List<dynamic>> sortedUsers = FirebaseFirestore.instance
+  //       .collection('users')
+  //       .where('id', isNotEqualTo: user!.uid)
+  //       .snapshots()
+  //       .map((querySnapshot) {
+  //     return (querySnapshot.docs.map((doc) => doc.data()).toList()..sort((a, b) {
+  //       if(a['id'] == MessageApi().mergedMessagesStream(user.uid).first || a['id'] == MessageApi().mergedMessagesStream(user.uid)[0].receiverId){
+  //         return 1;
+  //       }
+  //     },));
+  //   });
+  //   return sortedUsers;
+  // }
 }

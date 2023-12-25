@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:we_chat/user/user_api.dart';
+import 'package:we_chat/services/user/user_api.dart';
 part 'auth_bloc_event.dart';
 part 'auth_bloc_state.dart';
 

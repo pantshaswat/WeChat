@@ -31,6 +31,7 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     super.initState();
     _chatBloc.fetchMessages(generateChatRoomId(user1!.uid, widget.user['id']));
+    print('jello');
   }
 
   @override
@@ -68,6 +69,7 @@ class _ChatPageState extends State<ChatPage> {
           stream: _chatBloc.messageStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              MessageApi().setSeen(user1!.uid, widget.user['id']);
               List<MessageModel> messages = snapshot.data!;
               final size = messages.length;
               return Column(
@@ -91,8 +93,9 @@ class _ChatPageState extends State<ChatPage> {
                                             'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
                                       ),
                             title: messages[index].msgType == 1
-                                ? Container(
-                                    child: Image.network(messages[index].msg),
+                                ? Image.network(
+                                    messages[index].msg,
+                                    height: 200,
                                   )
                                 : Text(messages[index].msg),
                             subtitle: Text(messages[index]
@@ -150,6 +153,8 @@ class _ChatPageState extends State<ChatPage> {
                                     );
                                     MessageApi().onMessageSent(user1!.uid,
                                         widget.user['id'], _message);
+                                    MessageApi().lastMessage(user1!.uid,
+                                        widget.user['id'], _message);
                                   } catch (e) {
                                     print(e);
                                   }
@@ -181,6 +186,8 @@ class _ChatPageState extends State<ChatPage> {
                                 msgType: 0,
                               );
                               MessageApi().onMessageSent(
+                                  user1!.uid, widget.user['id'], _message);
+                              MessageApi().lastMessage(
                                   user1!.uid, widget.user['id'], _message);
                               _messageController.clear();
                             },
