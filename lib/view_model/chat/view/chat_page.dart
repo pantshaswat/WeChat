@@ -4,10 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:we_chat/services/message/message_api.dart';
 import 'package:we_chat/models/message_model.dart';
+import 'package:we_chat/services/signalling/signalling_service.dart';
 import 'package:we_chat/view_model/chat/bloc/chat_bloc.dart';
+import 'package:we_chat/view_model/chat/view/video_call_page.dart';
 
 class ChatPage extends StatefulWidget {
   final Map<String, dynamic> user;
@@ -27,16 +30,20 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   final user1 = FirebaseAuth.instance.currentUser;
+
+  //for video call
+
   @override
   void initState() {
-    super.initState();
     _chatBloc.fetchMessages(generateChatRoomId(user1!.uid, widget.user['id']));
-    print('jello');
+
+    super.initState();
   }
 
   @override
   void dispose() {
     _chatBloc.dispose();
+    _messageController.dispose();
     super.dispose();
   }
 
@@ -61,8 +68,31 @@ class _ChatPageState extends State<ChatPage> {
         ),
         backgroundColor: Colors.blue,
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.call)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.video_call))
+          StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection('rooms').snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                String chatRoomId =
+                    generateChatRoomId(user1!.uid, widget.user['id']);
+                if (snapshot.hasData &&
+                    snapshot.data!.docs.any((doc) => doc.id == chatRoomId)) {
+                  return ElevatedButton(
+                      onPressed: () {}, child: Text('Join call'));
+                } else {
+                  return IconButton(
+                      onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VideoCallPage(
+                              firendId: widget.user['id'],
+                            ),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.video_call));
+                }
+              })
         ],
       ),
       body: StreamBuilder<List<MessageModel>>(

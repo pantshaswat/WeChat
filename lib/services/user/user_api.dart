@@ -89,18 +89,4 @@ class ChatUserApi {
 
     return [];
   }
-  // Stream<List<dynamic>> getAllSortedUsers(User? user) {
-  //   final Stream<List<dynamic>> sortedUsers = FirebaseFirestore.instance
-  //       .collection('users')
-  //       .where('id', isNotEqualTo: user!.uid)
-  //       .snapshots()
-  //       .map((querySnapshot) {
-  //     return (querySnapshot.docs.map((doc) => doc.data()).toList()..sort((a, b) {
-  //       if(a['id'] == MessageApi().mergedMessagesStream(user.uid).first || a['id'] == MessageApi().mergedMessagesStream(user.uid)[0].receiverId){
-  //         return 1;
-  //       }
-  //     },));
-  //   });
-  //   return sortedUsers;
-  // }
 }

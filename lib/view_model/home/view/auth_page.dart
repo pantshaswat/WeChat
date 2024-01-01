@@ -15,7 +15,7 @@ class AuthPage extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return Column(
-            children: [
+            children: <Widget>[
               Container(
                   height: 250,
                   width: 250,
