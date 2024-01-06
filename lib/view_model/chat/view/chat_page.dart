@@ -77,7 +77,17 @@ class _ChatPageState extends State<ChatPage> {
                 if (snapshot.hasData &&
                     snapshot.data!.docs.any((doc) => doc.id == chatRoomId)) {
                   return ElevatedButton(
-                      onPressed: () {}, child: Text('Join call'));
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VideoCallPage(
+                                firendId: widget.user['id'],
+                                isJoin: true,
+                              ),
+                            ));
+                      },
+                      child: Text('Join call'));
                 } else {
                   return IconButton(
                       onPressed: () async {
@@ -86,6 +96,7 @@ class _ChatPageState extends State<ChatPage> {
                           MaterialPageRoute(
                             builder: (context) => VideoCallPage(
                               firendId: widget.user['id'],
+                              isJoin: false,
                             ),
                           ),
                         );

@@ -5,7 +5,8 @@ import 'package:we_chat/services/signalling/signalling_service.dart';
 
 class VideoCallPage extends StatefulWidget {
   String firendId;
-  VideoCallPage({super.key, required this.firendId});
+  bool isJoin;
+  VideoCallPage({super.key, required this.isJoin, required this.firendId});
   @override
   State<VideoCallPage> createState() => _VideoCallPageState();
 }
@@ -49,25 +50,19 @@ class _VideoCallPageState extends State<VideoCallPage> {
     return Scaffold(
       appBar: AppBar(actions: [
         ElevatedButton(
-            onPressed: () {
-              signalling.openUserMedia(localRenderer, remoteRenderer);
-            },
-            child: Text('Open Media')),
-        ElevatedButton(
             onPressed: () async {
-              roomId = await signalling.createRoom(remoteRenderer,
-                  generateChatRoomId(currentUser!.uid, widget.firendId));
-              _textEditingController.text = roomId!;
-              setState(() {});
+              if (widget.isJoin) {
+                signalling.joinRoom(
+                    generateChatRoomId(currentUser!.uid, widget.firendId),
+                    remoteRenderer);
+              } else {
+                roomId = await signalling.createRoom(remoteRenderer,
+                    generateChatRoomId(currentUser!.uid, widget.firendId));
+                _textEditingController.text = roomId!;
+                setState(() {});
+              }
             },
-            child: Text('create room')),
-        ElevatedButton(
-            onPressed: () {
-              signalling.joinRoom(
-                  generateChatRoomId(currentUser!.uid, widget.firendId),
-                  remoteRenderer);
-            },
-            child: Text('join room')),
+            child: Text(widget.isJoin == true ? 'Join Room' : 'Create Room')),
         IconButton(
           onPressed: () {
             signalling.hangUp(localRenderer,

@@ -1,16 +1,26 @@
-# we_chat
+# WeChat
 
-A new Flutter project.
+WeChat is a real-time chatting and video calling app (android/ios) made with flutter and firebase. The video calling was integrated using flutter_webrtc package and was based on https://www.youtube.com/watch?v=hAKQzNQmNe0&t=244s&ab_channel=FlutterExplained tutorial.
+
+It uses google stun servers.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub get
+```
 
-A few resources to get you started if this is your first Flutter project:
+Connect it to your firebase app: https://firebase.google.com/docs/flutter/setup?platform=ios
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Snapshots
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Alt AuthPage](./assets/photos/authpage.png)
+![Alt HomePage](./assets/photos/homepage.png)
+![Alt ChatPage](./assets/photos/chatpage.png)
+![Alt ChatPage](./assets/photos/videocall.jpg)
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
